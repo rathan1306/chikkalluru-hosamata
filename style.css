@@ -897,3 +897,20 @@ footer p {
 
 /* ZOOM OUT (SMOOTH RESET happens automatically on mouse leave) */
 
+.about-carousel .carousel-wrapper {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+}
+
+.carousel-track {
+  padding-right: 0;
+}
+
+.carousel-wrapper {
+  padding: 0 10px;
+}
+

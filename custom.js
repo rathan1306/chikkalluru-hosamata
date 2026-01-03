@@ -146,32 +146,43 @@ function moveCarousel(direction) {
 
   if (!cards.length) return;
 
-  const gap = 20;
-  const cardWidth = cards[0].offsetWidth + gap;
+  // compute gap from CSS and use actual card widths for accurate snapping
+  const gap = parseFloat(getComputedStyle(track).gap) || 0;
+  const widths = Array.from(cards).map(c => Math.round(c.getBoundingClientRect().width));
+  const singleCardWidth = widths[0] || 0;
 
-  const maxTranslate =
-    track.scrollWidth - wrapper.clientWidth;
+  const maxTranslate = Math.round(track.scrollWidth - wrapper.clientWidth);
 
+  // determine how many cards fit fully in the viewport by summing widths
+  let sum = 0;
+  let visibleCount = 0;
+  for (let i = 0; i < widths.length; i++) {
+    if (i > 0) sum += gap; // add gap between cards
+    sum += widths[i];
+    if (sum <= wrapper.clientWidth + 0.5) {
+      visibleCount++;
+    } else break;
+  }
+  visibleCount = Math.max(1, visibleCount);
+
+  // update index and clamp so last page shows full cards
   currentIndex += direction;
+  const maxIndex = Math.max(0, cards.length - visibleCount);
+  currentIndex = Math.min(Math.max(currentIndex, 0), maxIndex);
 
-  let translateX = currentIndex * cardWidth;
+  // compute translate using single card width + gap
+  let translateX = Math.round(currentIndex * (singleCardWidth + gap));
 
-  // Stop exactly at end
-  if (translateX < 0) {
-    translateX = 0;
-    currentIndex = 0;
-  }
+  // Clamp to allowable translate range
+  if (translateX < 0) translateX = 0;
+  if (translateX > maxTranslate) translateX = maxTranslate;
 
-  if (translateX > maxTranslate) {
-    translateX = maxTranslate;
-    currentIndex = Math.ceil(maxTranslate / cardWidth);
-  }
-
-  track.style.transform = `translateX(-${translateX}px)`;
+  // apply transform using 3d for smoother rendering
+  track.style.transform = `translate3d(-${translateX}px, 0, 0)`;
 
   // Disable buttons (if present)
-  if (prevBtn) prevBtn.disabled = translateX === 0;
-  if (nextBtn) nextBtn.disabled = translateX >= maxTranslate - 1;
+  if (prevBtn) prevBtn.disabled = currentIndex === 0;
+  if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
 }
 
 window.addEventListener("load", () => {
