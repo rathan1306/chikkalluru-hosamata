@@ -779,7 +779,6 @@ footer p {
     flex: 0 0 100%;
     width: 100%;
     box-sizing: border-box;
-    aspect-ratio: 1 / 1; /* forces the full card to be square */
     padding: 20px;
     min-height: auto;
     display: flex;
