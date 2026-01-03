@@ -20,7 +20,7 @@ function goToSlide(n) {
 // Auto-advance slides
 setInterval(() => {
   showSlide(currentSlide + 1);
-}, 5000);
+}, 7000);
 
 /* LANGUAGE SYSTEM */
 let lang = "en";
@@ -98,20 +98,91 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
 });
 
+/* ACTIVE NAV HIGHLIGHT BASED ON VISIBLE SECTION */
+function initSectionObserver() {
+  const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+  const targets = navLinks
+    .map(a => a.getAttribute('href'))
+    .map(href => document.querySelector(href))
+    .filter(Boolean);
+
+  if (!targets.length) return;
+
+  const obsOptions = {
+    root: null,
+    threshold: 0.45
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = document.querySelector(`nav a[href="#${id}"]`);
+      if (entry.isIntersecting) {
+        // remove active from all and set on this
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        if (link) link.classList.add('active');
+      }
+    });
+  }, obsOptions);
+
+  targets.forEach(t => observer.observe(t));
+}
+
+// initialize observer after DOM ready
+document.addEventListener('DOMContentLoaded', initSectionObserver);
+
 /* ABOUT CAROUSEL */
+
 let currentIndex = 0;
 
 function moveCarousel(direction) {
-  const track = document.querySelector('.carousel-track');
-  const cards = document.querySelectorAll('.card');
-  const cardWidth = cards[0].offsetWidth + 20; // card width + gap
-  const visibleCards = window.innerWidth > 992 ? 3 : window.innerWidth > 600 ? 2 : 1;
-  const maxIndex = cards.length - visibleCards;
+  const container = document.querySelector('.about-carousel');
+  if (!container) return;
+  const wrapper = container.querySelector('.carousel-wrapper');
+  const track = container.querySelector('.carousel-track');
+  const cards = container.querySelectorAll('.card');
+  const prevBtn = container.querySelector('.carousel-btn.prev');
+  const nextBtn = container.querySelector('.carousel-btn.next');
+
+  if (!cards.length) return;
+
+  const gap = 20;
+  const cardWidth = cards[0].offsetWidth + gap;
+
+  const maxTranslate =
+    track.scrollWidth - wrapper.clientWidth;
 
   currentIndex += direction;
-  if (currentIndex < 0) currentIndex = 0;
-  if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-  track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  let translateX = currentIndex * cardWidth;
+
+  // Stop exactly at end
+  if (translateX < 0) {
+    translateX = 0;
+    currentIndex = 0;
+  }
+
+  if (translateX > maxTranslate) {
+    translateX = maxTranslate;
+    currentIndex = Math.ceil(maxTranslate / cardWidth);
+  }
+
+  track.style.transform = `translateX(-${translateX}px)`;
+
+  // Disable buttons (if present)
+  if (prevBtn) prevBtn.disabled = translateX === 0;
+  if (nextBtn) nextBtn.disabled = translateX >= maxTranslate - 1;
 }
+
+window.addEventListener("load", () => {
+  if (document.querySelector('.about-carousel')) moveCarousel(0);
+});
+
+window.addEventListener("resize", () => {
+  if (document.querySelector('.about-carousel')) {
+    currentIndex = 0;
+    moveCarousel(0);
+  }
+});
+
 
