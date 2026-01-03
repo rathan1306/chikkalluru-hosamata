@@ -765,6 +765,42 @@ footer p {
   .card {
     flex: 0 0 100%;
   }
+
+  /* Make full cards (not only content) square inside About carousel */
+  .about-carousel .carousel-wrapper {
+    padding: 12px;
+  }
+
+  .about-carousel .carousel-track {
+    gap: 12px;
+  }
+
+  .about-carousel .card {
+    flex: 0 0 100%;
+    width: 100%;
+    box-sizing: border-box;
+    aspect-ratio: 1 / 1; /* forces the full card to be square */
+    padding: 20px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-carousel .card h3 {
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+
+  .about-carousel .card p {
+    flex: 1 1 auto;
+    overflow: auto;
+  }
+
+  /* Gallery items: keep square images */
+  .gallery-item {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
 }
 
 /* Buttons */
