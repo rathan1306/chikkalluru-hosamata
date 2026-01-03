@@ -62,7 +62,7 @@
   <!-- NAVIGATION -->
   <nav>
     <div class="nav-container">
-      <a href="#home"><div class="logo" data-en="Shri Chikkalluru Hosamata" data-kn="ಶ್ರೀ ಚಿಕ್ಕಲ್ಲೂರು ಹೊಸ ಮಠ">Shri Chikkalluru Hosamata</div></a>
+      <div class="logo" data-en="Shri Chikkalluru Hosamata" data-kn="ಶ್ರೀ ಚಿಕ್ಕಲ್ಲೂರು ಹೊಸ ಮಠ">Shri Chikkalluru Hosamata</div>
 
       <div class="mobile-toggle" onclick="toggleMenu()">
         <span></span>
@@ -111,64 +111,76 @@
       <h2 class="section-title" data-en="About the Temple" data-kn="ದೇವಸ್ಥಾನದ ಬಗ್ಗೆ">
         About the Temple
       </h2>
-      <p class="section-subtitle" data-en="Discover the rich history and spiritual significance of our temple"
+      <p class="section-subtitle"
+        data-en="Discover the rich history and spiritual significance of our temple"
         data-kn="ನಮ್ಮ ದೇವಸ್ಥಾನದ ಶ್ರೀಮಂತ ಇತಿಹಾಸ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕ ಮಹತ್ವವನ್ನು ಅನ್ವೇಷಿಸಿ">
         Discover the rich history and spiritual significance of our temple
       </p>
     </div>
 
-    <div class="about-carousel scroll-animate">
+    <div class="about-carousel">
+
+      <!-- PREV BUTTON -->
       <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+
+      <!-- VIEWPORT -->
       <div class="carousel-wrapper">
         <div class="carousel-track">
-          <!-- Sacred History -->
+
           <div class="card">
-            <h3 data-en="Sacred History" data-kn="ಪವಿತ್ರ ಇತಿಹಾಸ">Sacred History</h3>
-            <p data-en="Sri Siddappaji Swami was one of the foremost disciples of Manteswami and a revered saint who led a major spiritual awakening during the 15th century."
-              data-kn="ಶ್ರೀ ಸಿದ್ದಪ್ಪಾಜಿ ಸ್ವಾಮಿ ಮಂಟೇಸ್ವಾಮಿಯ ಪ್ರಮುಖ ಶಿಷ್ಯರಲ್ಲಿ ಒಬ್ಬರಾಗಿದ್ದು, 15ನೇ ಶತಮಾನದಲ್ಲಿ ಧರ್ಮಕ್ರಾಂತಿಯನ್ನು ತಂದ ಮಹಾನ್ ಸಂತರು.">
-              Sri Siddappaji Swami was one of the foremost disciples of Manteswami and a revered saint.
+            <h3>Sacred History</h3>
+            <p>
+              Sri Siddappaji Swami was one of the foremost disciples of Manteswami
+              and inspired a major spiritual awakening during the 15th century.
             </p>
           </div>
 
-          <!-- Spiritual Tradition -->
           <div class="card">
-            <h3 data-en="Spiritual Tradition" data-kn="ಆಧ್ಯಾತ್ಮಿಕ ಪರಂಪರೆ">Spiritual Tradition</h3>
-            <p data-en="The Manteswami Kavya is one of Karnataka's most important oral epics, preserved for centuries by the Neelagara community."
-              data-kn="ಮಂಟೇಸ್ವಾಮಿ ಕಾವ್ಯವು ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಮೌಖಿಕ ಮಹಾಕಾವ್ಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀಲಗಾರ ಸಮುದಾಯವು ಶತಮಾನಗಳಿಂದ ಉಳಿಸಿಕೊಂಡಿದೆ.">
-              The Manteswami Kavya is one of Karnataka's most important oral epics.
+            <h3>Spiritual Tradition</h3>
+            <p>
+              The Manteswami Kavya is one of Karnataka’s most important oral epics,
+              preserved through devotional singing and storytelling.
             </p>
           </div>
 
-          <!-- Social Reform -->
           <div class="card">
-            <h3 data-en="Social Reform" data-kn="ಸಾಮಾಜಿಕ ಸುಧಾರಣೆ">Social Reform</h3>
-            <p data-en="Siddappaji Swami and Manteswami united people from all sections of society and strongly opposed caste discrimination."
-              data-kn="ಸಿದ್ದಪ್ಪಾಜಿ ಮತ್ತು ಮಂಟೇಸ್ವಾಮಿ ಸಮಾಜದ ಎಲ್ಲಾ ವರ್ಗದವರನ್ನು ಒಂದುಗೂಡಿಸಿದರು.">
-              Siddappaji Swami and Manteswami united people from all sections of society.
+            <h3>Social Reform</h3>
+            <p>
+              Siddappaji Swami and Manteswami opposed caste discrimination and
+              promoted unity, equality, and compassion.
             </p>
           </div>
 
-          <!-- Temple Location -->
           <div class="card">
-            <h3 data-en="Temple Location" data-kn="ದೇವಸ್ಥಾನದ ಸ್ಥಳ">Temple Location</h3>
-            <p data-en="Located in Chikkalluru, Kollegala Taluk, Chamarajanagar District, Karnataka."
-              data-kn="ಕರ್ನಾಟಕದ ಚಾಮರಾಜನಗರ ಜಿಲ್ಲೆಯ ಕೊಲ್ಲೇಗಾಲ ತಾಲ್ಲೂಕಿನ ಚಿಕ್ಕಲ್ಲೂರಿನಲ್ಲಿದೆ.">
-              Located in Chikkalluru, Kollegala Taluk, Chamarajanagar District.
+            <h3>Temple Location</h3>
+            <p>
+              The Hosa Matha is located in Chikkalluru village, Kollegala Taluk,
+              Chamarajanagar District, Karnataka.
             </p>
           </div>
 
-          <!-- Spiritual Tradition -->
           <div class="card">
-            <h3 data-en="Spiritual Tradition" data-kn="ಆಧ್ಯಾತ್ಮಿಕ ಪರಂಪರೆ">Spiritual Tradition</h3>
-            <p data-en="The Manteswami Kavya is one of Karnataka's most important oral epics, preserved for centuries by the Neelagara community."
-              data-kn="ಮಂಟೇಸ್ವಾಮಿ ಕಾವ್ಯವು ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಮೌಖಿಕ ಮಹಾಕಾವ್ಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀಲಗಾರ ಸಮುದಾಯವು ಶತಮಾನಗಳಿಂದ ಉಳಿಸಿಕೊಂಡಿದೆ.">
-              The Manteswami Kavya is one of Karnataka's most important oral epics.
+            <h3>Cultural Heritage</h3>
+            <p>
+              The Matha preserves folk traditions, devotional music, and spiritual
+              practices of the region.
             </p>
           </div>
-          
+
+          <div class="card">
+            <h3>Festivals & Rituals</h3>
+            <p>
+              Annual festivals, special poojas, and spiritual gatherings attract
+              devotees from nearby regions.
+            </p>
+          </div>
+
         </div>
       </div>
+
+      <!-- NEXT BUTTON -->
       <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+
     </div>
   </section>
 
